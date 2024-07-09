@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="white">
+    <ion-title class="header-title">
+      <div class="header-title-wrapper">
+        <span>espotifai</span>
+        <img src="assets/logo.png" alt="Logo" height="50px">
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="login-container form">
+    <p class="title">Login</p>
+    <p class="message">Ingresa con tu cuenta para acceder a nuestra aplicación.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form">
+      <div class="flex">
+        <label>
+          <input class="input" type="email" placeholder="" required formControlName="email">
+          <span>Email</span>
+        </label>
+      </div>
+
+      <div *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.invalid" class="validation-message">
+        <p *ngIf="loginForm.get('email')?.hasError('required')">El email es requerido.</p>
+        <p *ngIf="loginForm.get('email')?.hasError('email')">Ingrese un email válido.</p>
+      </div>
+
+      <div class="flex">
+        <label>
+          <input class="input" type="{{ showPassword ? 'text' : 'password' }}" placeholder="" required formControlName="password">
+          <span>Password</span>
+          <ion-icon name="{{ showPassword ? 'eye-off-outline' : 'eye-outline' }}" class="password-toggle" (click)="togglePasswordVisibility()"></ion-icon>
+        </label>
+      </div>
+
+      <div *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.invalid" class="validation-message">
+        <p *ngIf="loginForm.get('password')?.hasError('required')">La contraseña es requerida.</p>
+      </div>
+
+      <button class="submit" type="submit" [disabled]="loginForm.invalid">Login</button>
+      <div *ngIf="loginError" class="ion-text-center ion-margin-top">
+        <ion-text color="danger">{{ loginError }}</ion-text>
+      </div>
+      
+    </form>
+
+    <p class="signin">¿No tienes una cuenta? <a (click)="goToRegister()">Regístrate</a></p>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <!-- Aquí puedes agregar cualquier footer adicional -->
+</ion-footer>

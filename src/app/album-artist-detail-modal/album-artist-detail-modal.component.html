@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ type === 'album' ? 'Album Details' : 'Artist Details' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="type === 'album'">
+    <ion-card>
+      <img [src]="details.images[0]?.url" alt="Album cover">
+      <ion-card-header>
+      <ion-card-title>{{ details.name }}</ion-card-title>
+      <ion-card-subtitle>{{ details.artists[0].name }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="ion-card-content-grid">
+      <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+        <p>Release Date:</p>
+        <p>{{ details.release_date }}</p>
+      </div>
+      <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+        <p>Total Tracks:</p>
+        <p>{{ details.total_tracks }}</p>
+      </div>
+      <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+        <p>Album Type:</p>
+        <p>{{ details.album_type }}</p>
+      </div>
+      <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+        <p>External Links:</p>
+        <p>
+          <a *ngFor="let link of details.external_urls | keyvalue" [href]="link.value" target="_blank">{{ link.key }}</a>
+        </p>
+      </div>
+      <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+        <p>Songs:</p>
+        <ul>
+          <li *ngFor="let track of tracks">{{ track.name }}</li>
+        </ul>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+<div *ngIf="type === 'artist'">
+  <ion-card>
+    <img [src]="details.images[0]?.url" alt="Artist image">
+    <ion-card-header>
+<ion-card-title>{{ details.name }}</ion-card-title>
+<ion-card-subtitle>{{ details.genres.join(', ') }}</ion-card-subtitle>
+</ion-card-header>
+<ion-card-content class="ion-card-content-grid">
+  <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+    <p>Followers:</p>
+    <p>{{ details.followers.total }}</p>
+  </div>
+  <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+    <p>Popularity:</p>
+    <p>{{ details.popularity }}</p>
+  </div>
+  <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))" *ngIf="details.albums">
+    <p>Number of Albums:</p>
+    <p>{{ details.albums.total }}</p>
+  </div>
+  <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))" *ngIf="details.tracks">
+    <p>Number of Tracks:</p>
+    <p>{{ details.tracks.total }}</p>
+  </div>
+  <div class="content-box" [ngClass]="'color-' + (getRandomIndex(colores))">
+    <p>External Links:</p>
+    <p>
+      <a *ngFor="let link of details.external_urls | keyvalue" [href]="link.value" target="_blank">{{ link.key }}</a>
+    </p>
+  </div>
+</ion-card-content>
+</ion-card>
+</div>
+</ion-content>

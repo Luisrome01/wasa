@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Buscar Canciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  
+<ion-content>
+  <ion-searchbar placeholder="Buscar canciones" [(ngModel)]="searchTerm" (ionInput)="searchItems($event)"></ion-searchbar>
+
+  <!-- Selector de género musical -->
+  <ion-item>
+    <ion-label>Género Musical</ion-label>
+    <ion-select [(ngModel)]="selectedGenre" (ionChange)="searchItems($event)">
+      <ion-select-option value="rock">Rock</ion-select-option>
+      <ion-select-option value="pop">Pop</ion-select-option>
+      <ion-select-option value="jazz">Jazz</ion-select-option>
+      <ion-select-option value="hip-hop">Hip Hop</ion-select-option>
+      <ion-select-option value="electronic">Electronic</ion-select-option>
+      <ion-select-option value="Trap">Trap</ion-select-option>
+      <ion-select-option value="Podcast">Podcast</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list *ngIf="searchResults.length > 0">
+    <ion-item *ngFor="let song of searchResults" (click)="playSong(song)">
+      <ion-thumbnail slot="start">
+        <img [src]="song.album.images[0]?.url">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ song.name }}</h2>
+        <p>{{ song.artists[0].name }}</p>
+      </ion-label>
+      <!-- Mostrar la canción seleccionada -->
+      <ion-icon name="checkmark" slot="end" *ngIf="selectedSong?.id === song.id"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="searchResults.length === 0 && searchTerm !== ''">
+    No se encontraron canciones para "{{ searchTerm }}"
+  </div>
+</ion-content>

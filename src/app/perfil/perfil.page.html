@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="white">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/tabs/tab1']">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <div class="header-title-wrapper">
+        <span class="title-text">Perfil</span>
+        <img src="assets/logo.png" alt="Logo" height="50px" class="logo-img">
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="welcome-message">
+    ¡Bienvenido, {{ userEmail }}!
+  </div>
+
+  <div class="button-container">
+    <ion-button class="custom-button" (click)="openUpdateEmailModal()">Update Email</ion-button>
+    <ion-button class="custom-button" (click)="openUpdatePasswordModal()">Update Password</ion-button>
+    <ion-button class="custom-button" (click)="openDeleteAccountModal()">Delete Account</ion-button>
+    <ion-button color="danger" class="logout-button" (click)="logout()">Logout</ion-button>
+  </div>
+</ion-content>
