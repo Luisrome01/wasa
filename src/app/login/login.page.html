@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar color="white">
+  <ion-toolbar>
     <ion-title class="header-title">
       <div class="header-title-wrapper">
-        <span>espotifai</span>
+        <span>Wasa</span>
         <img src="assets/logo.png" alt="Logo" height="50px">
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding login-content">
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -20,15 +20,16 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div class="login-container form">
+  <div class="background-animation"></div> <!-- Animación de fondo -->
+
+  <div class="login-container">
     <p class="title">Login</p>
     <p class="message">Ingresa con tu cuenta para acceder a nuestra aplicación.</p>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form">
-      <div class="flex">
+      <div class="input-group">
         <label>
-          <input class="input" type="email" placeholder="" required formControlName="email">
-          <span>Email</span>
+          <input class="input" type="email" placeholder="Email" required formControlName="email">
         </label>
       </div>
 
@@ -37,10 +38,9 @@
         <p *ngIf="loginForm.get('email')?.hasError('email')">Ingrese un email válido.</p>
       </div>
 
-      <div class="flex">
+      <div class="input-group">
         <label>
-          <input class="input" type="{{ showPassword ? 'text' : 'password' }}" placeholder="" required formControlName="password">
-          <span>Password</span>
+          <input class="input" type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" required formControlName="password">
           <ion-icon name="{{ showPassword ? 'eye-off-outline' : 'eye-outline' }}" class="password-toggle" (click)="togglePasswordVisibility()"></ion-icon>
         </label>
       </div>
