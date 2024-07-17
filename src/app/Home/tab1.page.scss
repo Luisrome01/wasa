@@ -1,45 +1,45 @@
 ion-header {
-    --ion-background-color: #1a1a1a; /* Color de fondo oscuro para el encabezado */
-    color: #ffffff; /* Texto blanco en el encabezado */
+  --background: #f8f8f8; /* Gray background for the header */
+  --color: #333; /* Dark text color */
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  
-  ion-toolbar {
-    --background: #1a1a1a; /* Color de fondo oscuro para la barra de herramientas */
-    --color: #ffffff; /* Color de texto blanco para la barra de herramientas */
+
+  .header-logo {
+    height: 40px;
+    margin-right: 10px;
   }
-  
-  ion-card {
-    background-color: #2b2b2b; /* Fondo oscuro para las tarjetas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-bottom: 16px;
-    color: #ffffff; /* Texto blanco en las tarjetas */
-  }
-  
-  ion-card-title {
-    font-weight: bold;
-  }
-  
-  ion-card-subtitle {
-    color: #cccccc; /* Color de subtítulo gris claro */
-  }
-  
-  .content {
-    --ion-background-color: #1a1a1a; /* Fondo oscuro para el contenido */
-    color: #ffffff; /* Texto blanco en el contenido */
-  }
-  
-  .scroll-content {
-    text-align: center;
-    color: #1a9855; /* Texto en tono verdoso */
-  }
-  
-  .card {
-    cursor: pointer;
-  }
-  
-  .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el mouse */
-  }
-  
+}
+
+ion-content {
+  --background: #f0f0f0; /* Light gray background for content */
+}
+
+ion-list {
+  padding: 0;
+}
+
+ion-item {
+  --background: #fff; /* White background for chat items */
+  --border-color: #ddd; /* Light border color */
+  margin-bottom: 10px;
+  border-radius: 25px; /* Oval shape */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+ion-avatar img {
+  border-radius: 50%;
+}
+
+ion-label h2 {
+  color: #333; /* Dark text color for chat names */
+  font-weight: bold;
+}
+
+ion-label p {
+  color: #666; /* Gray text color for chat messages */
+}
