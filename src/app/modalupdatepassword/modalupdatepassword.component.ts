@@ -63,7 +63,7 @@ export class ModalupdatepasswordComponent implements OnInit {
     const confirmPassword = this.updatePasswordForm.value.confirmPassword;
     const authToken = localStorage.getItem('authToken');
 
-    const response = await fetch('https://backend-spotify-c0gn.onrender.com/api/users/updatePassword', {
+    const response = await fetch('http://localhost:8000/api/users/updatePassword', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

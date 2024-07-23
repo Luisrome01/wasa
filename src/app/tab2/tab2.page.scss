@@ -1,22 +1,53 @@
-.selected-song-card {
-  width: 100%;
-  max-width: 450px;
-  margin: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  display: none; /* Ocultamos la tarjeta por defecto */
+.status-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 0;
+
+  .status-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+
+    .status-image {
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .status-info {
+      text-align: center;
+
+      h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #666;
+      }
+    }
+  }
 }
 
-.selected-song-card.show {
-  display: block; /* Mostramos la tarjeta cuando hay una canción seleccionada */
-}
-
-.selected-song-card ion-card-content {
+.no-more-states {
   display: flex;
   justify-content: center;
-}
-
-.selected {
-  background-color: #f2f2f2; /* Estilo para resaltar la canción seleccionada */
+  align-items: center;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  padding: 16px;
+  height: 100%;
 }

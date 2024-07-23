@@ -34,7 +34,7 @@ export class LoginPage {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
   
-      fetch('https://backend-spotify-c0gn.onrender.com/api/auth/login', {
+      fetch('http://localhost:8000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Estados</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list class="ion-no-padding">
+      <ion-item class="status-item" *ngFor="let status of statuses">
+        <div class="status-content">
+          <div class="status-image">
+            <img [src]="status.imageUrl" alt="Status Image" />
+          </div>
+          <div class="status-info">
+            <h2>{{ status.userId.email }}</h2>
+            <p>Creado el: {{ status.createdAt | date:'short' }}</p>
+          </div>
+        </div>
+      </ion-item>
+      <ion-item class="no-more-states" *ngIf="statuses.length === 0">
+        <p>No hay más estados, regresa más tarde.</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
