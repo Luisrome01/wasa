@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Create Status</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div class="form-container">
+      <form [formGroup]="createStatusForm" (ngSubmit)="createStatus()">
+        <ion-item>
+          <ion-label position="floating">Title</ion-label>
+          <ion-input formControlName="title"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-input formControlName="description"></ion-input>
+        </ion-item>
+  
+        <ion-item class="file-upload">
+          <input type="file" (change)="onFileSelected($event)" />
+          <ion-label position="floating">Select Image</ion-label>
+        </ion-item>
+        <ion-text color="danger" *ngIf="!selectedFile">
+          Please select an image.
+        </ion-text>
+  
+        <div *ngIf="imagePreview" class="image-preview">
+          <img [src]="imagePreview" alt="Image Preview" />
+        </div>
+  
+        <ion-button expand="block" type="submit" [disabled]="createStatusForm.invalid || !selectedFile">
+          Create Status
+        </ion-button>
+      </form>
+    </div>
+  </ion-content>
+  

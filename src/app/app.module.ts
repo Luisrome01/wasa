@@ -12,12 +12,29 @@ import { LoginPageModule } from './login/login.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalDeleteModule } from './modaldelete/modaldelete.module';
 import { ModalupdatepasswordModule } from './modalupdatepassword/modalupdatepassword.module';
- 
+import { CreateStatusModalComponent } from './tab2/create-status-modal.component';
+
 /*import { AuthInterceptor } from './auth.interceptor.interceptor';*/
+
 @NgModule({
-  declarations: [AppComponent, ModalComponent, AlbumArtistDetailModalComponent, ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, HttpClientModule, ModalupdatepasswordModule ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },/*{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }, */],
+  declarations: [
+    AppComponent,
+    ModalComponent,
+    AlbumArtistDetailModalComponent,
+    CreateStatusModalComponent, // Asegúrate de que el componente esté aquí
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ModalupdatepasswordModule
+  ],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    /*{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }, */
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

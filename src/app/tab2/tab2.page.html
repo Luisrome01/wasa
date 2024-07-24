@@ -1,24 +1,33 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title>Estados</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-list class="ion-no-padding">
-      <ion-item class="status-item" *ngFor="let status of statuses">
-        <div class="status-content">
-          <div class="status-image">
-            <img [src]="status.imageUrl" alt="Status Image" />
-          </div>
-          <div class="status-info">
-            <h2>{{ status.userId.email }}</h2>
-            <p>Creado el: {{ status.createdAt | date:'short' }}</p>
-          </div>
+  <ion-toolbar>
+    <ion-title>Estados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-no-padding">
+    <ion-item class="status-item" *ngFor="let status of statuses">
+      <div class="status-content">
+        <div class="status-image">
+          <img [src]="status.imageUrl" alt="Status Image" />
         </div>
-      </ion-item>
-      <ion-item class="no-more-states" *ngIf="statuses.length === 0">
-        <p>No hay más estados, regresa más tarde.</p>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+        <div class="status-info">
+          <h2>{{ status.title }}</h2>
+          <p>{{ status.description }}</p>
+          <p><strong>Email:</strong> {{ status.userEmail }}</p>
+          <p><strong>Creado el:</strong> {{ status.createdAt | date:'short' }}</p>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item class="no-more-states" *ngIf="statuses.length === 0">
+      <p>No hay más estados, regresa más tarde.</p>
+    </ion-item>
+  </ion-list>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateStatusModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
