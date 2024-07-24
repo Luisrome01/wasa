@@ -12,6 +12,7 @@ export class RegisterPage {
   registerForm: FormGroup;
   passwordFieldType: string = 'password';
   confirmPasswordFieldType: string = 'password';
+  selectedFile: File | null = null; // Variable para almacenar la imagen de perfil seleccionada
 
   constructor(
     private fb: FormBuilder,
@@ -27,7 +28,8 @@ export class RegisterPage {
         Validators.required,
         Validators.minLength(6)
       ]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      profileImage: [null, Validators.required] // Asegúrate de que este campo es requerido
     }, {
       validators: this.passwordMatchValidator
     });
@@ -43,6 +45,16 @@ export class RegisterPage {
     await alert.present();
   }
 
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      console.log('Archivo seleccionado:', this.selectedFile);
+      this.registerForm.patchValue({ profileImage: this.selectedFile });
+      this.registerForm.get('profileImage')?.updateValueAndValidity(); // Actualiza la validez del campo
+    }
+  }
+
   onSubmit() {
     if (this.registerForm.valid) {
       const { email, password, confirmPassword } = this.registerForm.value;
@@ -51,12 +63,25 @@ export class RegisterPage {
         return;
       }
 
-      fetch('http://localhost:8000/api/auth/register', {
+      if (!this.selectedFile) {
+        this.presentAlert('Error', 'Por favor, selecciona una imagen de perfil.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('profileImage', this.selectedFile);
+
+      // Verificar el contenido de FormData
+      console.log('Contenido de FormData:', formData.get('email'), formData.get('password'), formData.get('profileImage'));
+
+      fetch('http://localhost:8000/api/users/createUser', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmNDIyNGE4MDU3MTM5YWUxNTZiNmYiLCJpYXQiOjE3MjE4NDQ3Mjl9.hKyHTfYzSiZMHSDFftCaZfy3QrjoCHDgYtGycs53wpY'
         },
-        body: JSON.stringify({ email, password })
+        body: formData
       })
       .then(response => {
         if (!response.ok) {
@@ -84,6 +109,9 @@ export class RegisterPage {
     } else {
       console.log('Form is invalid');
       this.presentAlert('Error', 'Por favor, verifica que el email sea valido y que la contraseña coincida con su confirmacion.');
+      if (!this.selectedFile) {
+        this.presentAlert('Error', 'Asegúrate de haber seleccionado una imagen de perfil.');
+      }
       this.markFormGroupTouched(this.registerForm);
     }
   }

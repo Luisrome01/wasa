@@ -6,7 +6,7 @@
         <img src="assets/wasalogo.png" alt="Logo" height="50px">
       </div>
     </ion-title>
-  </ion-toolbar> 
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -41,6 +41,11 @@
       <ion-icon name="eye" class="password-toggle" (click)="togglePasswordVisibility('confirmPassword')"></ion-icon>
       <span *ngIf="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched" class="error-message">Confirm Password is required</span>
       <span *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="error-message">Passwords do not match</span>
+    </label>
+
+    <label class="input-wrapper">
+      <input type="file" (change)="onFileSelected($event)" required>
+      <span *ngIf="registerForm.get('profileImage')?.hasError('required') && registerForm.get('profileImage')?.touched" class="error-message">Profile image is required</span>
     </label>
 
     <button type="submit" class="submit">Submit</button>
