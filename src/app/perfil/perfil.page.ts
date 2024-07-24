@@ -13,8 +13,8 @@ import { ModalupdatepasswordComponent } from '../modalupdatepassword/modalupdate
 })
 export class PerfilPage implements OnInit {
   updateEmailForm: FormGroup;
-  userEmail: string | null = '';
-  selectedGender: string | null = '';
+  userEmail: string | null = ''; // Restaurado
+  profileImageUrl: string = ''; // Atributo para la imagen de perfil
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +28,38 @@ export class PerfilPage implements OnInit {
 
   ngOnInit() {
     this.userEmail = localStorage.getItem('userEmail') || '';
-    this.selectedGender = localStorage.getItem('userGender') || '';
+    // Obtener la URL de la imagen de perfil del backend
+    this.getProfileImage();
+  }
+
+  getProfileImage() {
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      console.error('No auth token found');
+      return;
+    }
+
+    const imageUrl = `http://localhost:8000/profile-image`; // Aquí puedes verificar si la URL es correcta
+    console.log('Fetching profile image from URL:', imageUrl);
+
+    fetch(imageUrl, {
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error fetching profile image');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      this.profileImageUrl = url; // Corregido aquí
+    })
+    .catch(error => {
+      console.error('Error fetching profile image:', error);
+    });
   }
 
   logout() {
@@ -37,7 +68,6 @@ export class PerfilPage implements OnInit {
     this.router.navigate(['/login']);
   }
 
-
   handleRefresh(event: CustomEvent) {
     setTimeout(() => {
       location.reload();
@@ -45,7 +75,6 @@ export class PerfilPage implements OnInit {
     }, 2000);
   }
 
-  
   goToTabs() {
     this.router.navigate(['/tabs']);
   }
@@ -53,7 +82,7 @@ export class PerfilPage implements OnInit {
   async openUpdateEmailModal() {
     const modal = await this.modalController.create({
       component: ModalEmailComponent,
-      componentProps: { currentEmail: this.userEmail }
+      componentProps: { currentEmail: this.userEmail } // Asegúrate de pasar el email actual
     });
 
     modal.onDidDismiss().then((data) => {
@@ -79,20 +108,12 @@ export class PerfilPage implements OnInit {
       this.userEmail = updatedEmail; 
     }
   }
+
   async openUpdatePasswordModal() {
     const modal = await this.modalController.create({
       component: ModalupdatepasswordComponent
     });
     return await modal.present();
-  } 
-
-  
-
-
-  selectGender(gender: string) {
-    this.selectedGender = gender;
-    localStorage.setItem('userGender', gender);
-    console.log('Selected Gender:', gender);
   }
 
   async openDeleteAccountModal() {
@@ -117,3 +138,4 @@ export class PerfilPage implements OnInit {
     window.location.reload();
   }
 }
+ 

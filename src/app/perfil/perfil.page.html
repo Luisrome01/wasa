@@ -26,6 +26,11 @@
     ¡Bienvenido, {{ userEmail }}!
   </div>
 
+  <div class="profile-container">
+    <img [src]="profileImageUrl" alt="Profile Image" *ngIf="profileImageUrl">
+<p *ngIf="!profileImageUrl">No profile image available</p>
+  </div>
+
   <div class="button-container">
     <ion-button class="custom-button" (click)="openUpdateEmailModal()">Update Email</ion-button>
     <ion-button class="custom-button" (click)="openUpdatePasswordModal()">Update Password</ion-button>
