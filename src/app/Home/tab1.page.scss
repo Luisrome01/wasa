@@ -1,45 +1,44 @@
-ion-header {
-  --background: #f8f8f8; /* Gray background for the header */
-  --color: #333; /* Dark text color */
-
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .header-logo {
-    height: 40px;
-    margin-right: 10px;
-  }
+/* Estilos para el ítem del chat */
+.chat-item {
+  --padding-start: 0;
+  --inner-padding-end: 16px;
+  margin: 10px 0; /* Aumenta el margen entre ítems */
+  height: 100px; /* Aumenta la altura del ítem del chat */
+  display: flex;
+  align-items: center; /* Alinea verticalmente el contenido */
+  padding: 0 10px; /* Agrega espacio adicional a los lados del ítem del chat */
 }
 
-ion-content {
-  --background: #f0f0f0; /* Light gray background for content */
+/* Estilos para el contenedor del avatar */
+.avatar-container {
+  margin-right: 10px; /* Reducido el espacio entre el avatar y la línea separadora */
+  border: 2px solid #1ed760; /* Marco verde alrededor del avatar */
+  border-radius: 50%; /* Hace el marco circular */
+  padding: 2px; /* Reducido el espacio entre el marco y la imagen */
 }
 
-ion-list {
-  padding: 0;
+/* Estilos para el avatar del chat */
+.chat-avatar {
+  width: 80px; /* Aumenta el ancho del avatar */
+  height: 80px; /* Aumenta la altura del avatar */
 }
 
-ion-item {
-  --background: #fff; /* White background for chat items */
-  --border-color: #ddd; /* Light border color */
-  margin-bottom: 10px;
-  border-radius: 25px; /* Oval shape */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+.chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+  border-radius: 50%; /* Hace el avatar circular */
 }
 
-ion-avatar img {
-  border-radius: 50%;
+/* Estilos para el texto del chat */
+.chat-label {
+  margin-left: 10px; /* Reducido el margen a la izquierda para separar del avatar */
+  border-left: 1px solid #e0e0e0; /* Línea de separación entre avatar y texto */
+  padding-left: 10px; /* Reducido el espacio entre la línea de separación y el texto */
+  flex: 1; /* Hace que el contenedor del texto ocupe el espacio restante */
 }
 
-ion-label h2 {
-  color: #333; /* Dark text color for chat names */
-  font-weight: bold;
-}
-
-ion-label p {
-  color: #666; /* Gray text color for chat messages */
+.chat-label h2 {
+  font-size: 1em; /* Reduce el tamaño del nombre del chat */
+  margin: 0;
 }
