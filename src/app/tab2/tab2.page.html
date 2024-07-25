@@ -5,6 +5,21 @@
 </ion-header>
 
 <ion-content>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+
+
+
   <ion-list class="ion-no-padding">
     <ion-item class="status-item" *ngFor="let status of statuses">
       <div class="status-content">
@@ -24,9 +39,8 @@
     </ion-item>
   </ion-list>
 
-  <!-- Floating Action Button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="openCreateStatusModal()">
+    <ion-fab-button class="fab-button" (click)="openCreateStatusModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

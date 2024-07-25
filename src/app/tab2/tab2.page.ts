@@ -26,7 +26,7 @@ export class Tab2Page implements OnInit {
       description: ['', Validators.required]
     });
   }
-
+ 
   ngOnInit() {
     this.getStatuses().subscribe(
       (data: any[]) => {
@@ -61,4 +61,13 @@ export class Tab2Page implements OnInit {
     });
     return await modal.present();
   }
+
+  handleRefresh(event: CustomEvent) {
+    setTimeout(() => {
+      location.reload();
+      event.detail.complete();
+    }, 2000);
+  }
+
+
 }
