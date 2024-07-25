@@ -20,8 +20,8 @@
 ion-content {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
+  justify-content: center; 
+  align-items: center; 
   height: 100%;
 }
 
@@ -44,25 +44,25 @@ ion-content {
 }
 
 .custom-button {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 300px; /* Máximo ancho para evitar que sean demasiado grandes */
+  width: 100%; 
+  max-width: 300px; 
   margin: 10px; /* Espacio entre botones */
-  --background: #1db954; /* Color de fondo de Spotify */
+  --background: #1db954; 
   --background-activated: #1ed760; /* Color de fondo activo */
   --background-focused: #1db954; /* Color de fondo enfocado */
   --background-hover: #1ed760; /* Color de fondo al pasar el mouse */
   --background-pressed: #1db954; /* Color de fondo al presionar */
-  --border-radius: 20px; /* Borde redondeado */
-  --color: white; /* Color de texto */
-  --box-shadow: none; /* Sin sombra */
+  --border-radius: 20px; 
+  --color: white; 
+  --box-shadow: none; 
 }
 
 .custom-button:hover {
-  --background: #1ed760; /* Color de fondo al pasar el mouse */
+  --background: #1ed760; 
 }
 
 .custom-button:active {
-  --background: #1db954; /* Color de fondo al presionar */
+  --background: #1db954; 
 }
 
 .logout-button {
@@ -78,16 +78,29 @@ ion-content {
   --border-radius: 20px; /* Borde redondeado */
   --color: white; /* Color de texto */
   --box-shadow: none; /* Sin sombra */
-}
-.profile-image-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  
 }
 
-.profile-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
 }
+
+.profile-container img {
+  width: 200px; /* Ajusta el tamaño a 200px */
+  height: 200px; /* Ajusta el tamaño a 200px */
+  object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  border: 5px solid #1DB954; /* Borde con el color verde de Spotify */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para un efecto más estilizado */
+}
+
+.profile-container p {
+  font-size: 16px;
+  color: #555; /* Color de texto gris */
+  margin-top: 10px;
+}
+

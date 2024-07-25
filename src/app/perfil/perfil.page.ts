@@ -34,32 +34,38 @@ export class PerfilPage implements OnInit {
 
   getProfileImage() {
     const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-      console.error('No auth token found');
-      return;
+    console.log('AuthToken:', authToken);
+
+    if (authToken) {
+      const url = 'http://localhost:8000/api/users/profile-image';
+      console.log('Fetching profile image from URL:', url);
+
+      fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${authToken}`
+        }
+      })
+      .then(response => {
+        console.log('Response:', response);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Response data:', data);
+        if (data && data.profileImage) {
+          this.profileImageUrl = data.profileImage;
+        } else {
+          throw new Error('Profile image URL not found in response');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching profile image:', error);
+      });
+    } else {
+      console.warn('No auth token found in localStorage.');
     }
-
-    const imageUrl = `http://localhost:8000/profile-image`; // Aquí puedes verificar si la URL es correcta
-    console.log('Fetching profile image from URL:', imageUrl);
-
-    fetch(imageUrl, {
-      headers: {
-        'Authorization': `Bearer ${authToken}`
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error fetching profile image');
-      }
-      return response.blob();
-    })
-    .then(blob => {
-      const url = URL.createObjectURL(blob);
-      this.profileImageUrl = url; // Corregido aquí
-    })
-    .catch(error => {
-      console.error('Error fetching profile image:', error);
-    });
   }
 
   logout() {
