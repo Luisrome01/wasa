@@ -47,16 +47,37 @@ export class Tab1Page implements OnInit {
           // Mover los chats sin información al final
           return nameA === 'No member info' ? 1 : nameB === 'No member info' ? -1 : 0;
         });
+
+      // Guardar los chats en localStorage
+      localStorage.setItem('chats', JSON.stringify(this.chats));
+
     } catch (error) {
       console.error('Error fetching chats:', error);
     }
   }
 
   async openChatModal(chatId: string) {
-    const modal = await this.modalController.create({
-      component: ChatModalComponent,
-      componentProps: { chatId }
-    });
-    return await modal.present();
+    // Leer los chats desde localStorage
+    const storedChats = localStorage.getItem('chats');
+    let chatData = [];
+  
+    if (storedChats) {
+      chatData = JSON.parse(storedChats);
+    }
+  
+    // Buscar el chat correspondiente al chatId
+    const chat = chatData.find((c: any) => c.member?._id === chatId || c.member?.email === chatId);
+  
+    if (chat) {
+      // Crear el modal con el chat ID
+      const modal = await this.modalController.create({
+        component: ChatModalComponent,
+        componentProps: { chatId: chat.chat } // Pasar el chat ID al modal
+      });
+      return await modal.present();
+    } else {
+      console.error('Chat not found for the provided chatId');
+    }
   }
+  
 }

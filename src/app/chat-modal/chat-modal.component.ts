@@ -14,6 +14,7 @@ export class ChatModalComponent implements OnInit {
 
   ngOnInit() {
     if (this.chatId) {
+      console.log('Chat ID received:', this.chatId); // Agregado para depuración
       this.fetchMessages();
     } else {
       console.error('No chatId provided');
@@ -22,23 +23,35 @@ export class ChatModalComponent implements OnInit {
 
   async fetchMessages() {
     const authToken = localStorage.getItem('authToken');
+    console.log('Auth Token:', authToken);
+    console.log('Fetching messages for chat ID:', this.chatId);
+  
     try {
-      const response = await fetch(`http://localhost:8000/api/chats/${this.chatId}/messages`, {
+      const response = await fetch(`https://backend-wassapp-4.onrender.com/api/chats/${this.chatId}/messages`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${authToken}`
         }
       });
-
+  
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
-      this.messages = await response.json();
+  
+      const data = await response.json();
+      console.log('Fetched data:', data); // Agregado para depuración
+  
+      // Asegúrate de que `messages` es un array
+      if (data && Array.isArray(data.messages)) {
+        this.messages = data.messages;
+      } else {
+        console.error('Fetched data.messages is not an array:', data.messages);
+      }
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
   }
+  
 
   closeModal() {
     this.modalController.dismiss();

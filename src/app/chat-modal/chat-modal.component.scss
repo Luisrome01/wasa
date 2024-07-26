@@ -1,10 +1,35 @@
-ion-content {
-    --background: #f4f4f4;
-  }
-  
-  ion-item {
-    background-color: #ffffff;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
+ion-header {
+  background-color: #1ed760; /* Verde estilo Spotify */
+  color: white;
+}
+
+ion-toolbar {
+  --background: #1ed760;
+  --color: white;
+}
+
+ion-card.no-messages-card {
+  margin: 20px;
+  text-align: center;
+  --background: #f9f9f9;
+  --color: #333;
+}
+
+ion-card-title {
+  color: #1ed760;
+}
+
+ion-footer {
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+
+ion-input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+ion-button {
+  --background: #1ed760;
+  --color: white;
+}
