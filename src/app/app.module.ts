@@ -13,9 +13,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalDeleteModule } from './modaldelete/modaldelete.module';
 import { ModalupdatepasswordModule } from './modalupdatepassword/modalupdatepassword.module';
 import { CreateStatusModalComponent } from './tab2/create-status-modal.component';
+import { FormsModule } from '@angular/forms';
 import { ChatModalComponent } from './chat-modal/chat-modal.component';
-
-
+import { ChatModalModule } from './chat-modal/chat-modal.module';
 
 /*import { AuthInterceptor } from './auth.interceptor.interceptor';*/
 
@@ -25,7 +25,8 @@ import { ChatModalComponent } from './chat-modal/chat-modal.component';
     ModalComponent,
     AlbumArtistDetailModalComponent,
     CreateStatusModalComponent,
-    ChatModalComponent, // Asegúrate de que el componente esté aquí
+    
+   // Asegúrate de que el componente esté aquí
   ],
   imports: [
     BrowserModule,
@@ -33,7 +34,10 @@ import { ChatModalComponent } from './chat-modal/chat-modal.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ModalupdatepasswordModule
+    FormsModule, // Asegúrate de importar FormsModule
+    IonicModule.forRoot(),
+    ModalupdatepasswordModule, 
+    ChatModalModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

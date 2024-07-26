@@ -22,6 +22,52 @@ ion-card-title {
 ion-footer {
   background-color: #fff;
   border-top: 1px solid #ddd;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+ion-item {
+  margin: 0;
+  display: flex;
+  align-items: flex-start; /* Alinea verticalmente al inicio */
+  margin-bottom: 10px; /* Espacio entre mensajes */
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+  max-width: 80%; /* Limita el ancho máximo del óvalo */
+}
+
+.message-label {
+  background-color: #1ed760; /* Color verde para el óvalo */
+  color: white;
+  padding: 10px;
+  border-radius: 50px; /* Forma de óvalo */
+  max-width: 100%; /* Permite que el óvalo crezca hacia abajo si es necesario */
+  word-wrap: break-word; /* Ajuste de línea para el texto largo */
+  white-space: pre-wrap; /* Permite el ajuste automático del texto */
+  overflow-wrap: break-word; /* Asegura que las palabras largas se ajusten dentro del óvalo */
+  box-sizing: border-box; /* Incluye el padding y border en el ancho y alto del óvalo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  word-break: break-word; /* Rompe las palabras largas si es necesario */
+}
+
+.message-label h2 {
+  margin: 0;
+  font-weight: bold;
+  line-height: 1.2; /* Ajusta la altura de línea para mejor espacio */
+}
+
+.message-label p {
+  margin: 5px 0 0; /* Espacio entre el nombre y el mensaje */
 }
 
 ion-input {
@@ -32,4 +78,8 @@ ion-input {
 ion-button {
   --background: #1ed760;
   --color: white;
+}
+
+ion-icon {
+  font-size: 24px;
 }

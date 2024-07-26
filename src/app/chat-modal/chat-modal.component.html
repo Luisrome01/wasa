@@ -1,19 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Chat Messages</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">Close</ion-button>
     </ion-buttons>
+    <ion-title slot="start">{{ chatPartnerEmail }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="messages.length; else noMessages">
     <ion-item *ngFor="let message of messages">
-      <ion-label>
+      <ion-label class="message-label">
         <h2>{{ message.sender }}</h2>
         <p>{{ message.content }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
+  <ng-template #noMessages>
+    <ion-card class="no-messages-card">
+      <ion-card-header>
+        <ion-card-title>No Messages Yet!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Parece que no tienen mensajes juntos, comiencen la experiencia escribiendo tu primer mensaje!</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+  <!-- Input y botones para enviar mensajes -->
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="sendMessage()">
+          <ion-icon name="send"></ion-icon>
+        </ion-button>
+        <ion-button (click)="sendAudio()">
+          <ion-icon name="mic"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-input
+        placeholder="Escribe tu mensaje..."
+        (focus)="onFocus()"
+        [(ngModel)]="newMessage"
+      ></ion-input>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
