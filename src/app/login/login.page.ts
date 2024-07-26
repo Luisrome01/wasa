@@ -34,7 +34,7 @@ export class LoginPage {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
   
-      fetch('http://localhost:8000/api/auth/login', {
+      fetch('https://backend-wassapp-4.onrender.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

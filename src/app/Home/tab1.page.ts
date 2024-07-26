@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ChatModalComponent } from '../chat-modal/chat-modal.component';
 
 @Component({
   selector: 'app-tab1',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab1Page implements OnInit {
   chats: any[] = [];
-  private apiUrl = 'http://localhost:8000/api/chats'; // Ajusta la URL según tu backend
+  private apiUrl = 'https://backend-wassapp-4.onrender.com/api/chats'; // Ajusta la URL según tu backend
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
     this.fetchChats();
@@ -48,5 +50,13 @@ export class Tab1Page implements OnInit {
     } catch (error) {
       console.error('Error fetching chats:', error);
     }
+  }
+
+  async openChatModal(chatId: string) {
+    const modal = await this.modalController.create({
+      component: ChatModalComponent,
+      componentProps: { chatId }
+    });
+    return await modal.present();
   }
 }

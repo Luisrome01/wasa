@@ -37,7 +37,7 @@ export class PerfilPage implements OnInit {
     console.log('AuthToken:', authToken);
 
     if (authToken) {
-      const url = 'http://localhost:8000/api/users/profile-image';
+      const url = 'https://backend-wassapp-4.onrender.com/api/users/profile-image';
       console.log('Fetching profile image from URL:', url);
 
       fetch(url, {

@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let chat of chats" class="chat-item">
+    <ion-item *ngFor="let chat of chats" class="chat-item" (click)="openChatModal(chat.id)">
       <div class="avatar-container">
         <ion-avatar slot="start" class="chat-avatar">
           <img *ngIf="chat.member?.profileImage" [src]="chat.member.profileImage" />
@@ -16,6 +16,6 @@
       <ion-label class="chat-label">
         <h2>{{ chat.member?.email || 'No member info' }}</h2>
       </ion-label>
-    </ion-item>
+    </ion-item> 
   </ion-list>
 </ion-content>

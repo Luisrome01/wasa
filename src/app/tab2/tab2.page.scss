@@ -19,7 +19,7 @@ ion-content {
 }
 
 
-.status-content {
+.status-content { 
   display: flex;
   flex-direction: column;
   align-items: center; /* Centrar horizontalmente dentro del contenedor */
@@ -94,4 +94,18 @@ ion-fab-button.fab-button ion-icon {
 /* Estilo para los separadores entre los estados */
 .status-item + .status-item {
   border-top: 1px solid #e0e0e0; 
+}
+
+
+ion-refresher {
+  --ion-refresher-background: #1DB954; /* Color de fondo del refrescador */
+  --ion-text-color: #000000; /* Color del texto */
+  --ion-icon-color: #000000; /* Color del icono */
+
+  ion-refresher-content {
+    color: var(--ion-text-color);
+    ion-icon {
+      color: var(--ion-icon-color);
+    }
+  }
 }

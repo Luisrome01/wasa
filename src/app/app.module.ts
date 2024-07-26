@@ -13,6 +13,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalDeleteModule } from './modaldelete/modaldelete.module';
 import { ModalupdatepasswordModule } from './modalupdatepassword/modalupdatepassword.module';
 import { CreateStatusModalComponent } from './tab2/create-status-modal.component';
+import { ChatModalComponent } from './chat-modal/chat-modal.component';
+
+
 
 /*import { AuthInterceptor } from './auth.interceptor.interceptor';*/
 
@@ -21,7 +24,8 @@ import { CreateStatusModalComponent } from './tab2/create-status-modal.component
     AppComponent,
     ModalComponent,
     AlbumArtistDetailModalComponent,
-    CreateStatusModalComponent, // Asegúrate de que el componente esté aquí
+    CreateStatusModalComponent,
+    ChatModalComponent, // Asegúrate de que el componente esté aquí
   ],
   imports: [
     BrowserModule,
@@ -36,5 +40,6 @@ import { CreateStatusModalComponent } from './tab2/create-status-modal.component
     /*{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor }, */
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

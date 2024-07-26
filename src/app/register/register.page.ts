@@ -76,7 +76,7 @@ export class RegisterPage {
       // Verificar el contenido de FormData
       console.log('Contenido de FormData:', formData.get('email'), formData.get('password'), formData.get('profileImage'));
 
-      fetch('http://localhost:8000/api/users/createUser', {
+      fetch('https://backend-wassapp-4.onrender.com/api/users/createUser', {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjlmNDIyNGE4MDU3MTM5YWUxNTZiNmYiLCJpYXQiOjE3MjE4NDQ3Mjl9.hKyHTfYzSiZMHSDFftCaZfy3QrjoCHDgYtGycs53wpY'

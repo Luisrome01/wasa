@@ -5,8 +5,6 @@
 </ion-header>
 
 <ion-content>
-
-
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content
       pullingIcon="chevron-down-circle-outline"
@@ -15,10 +13,6 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-
-
-
-
 
   <ion-list class="ion-no-padding">
     <ion-item class="status-item" *ngFor="let status of statuses">

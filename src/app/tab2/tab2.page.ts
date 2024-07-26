@@ -12,7 +12,7 @@ import { CreateStatusModalComponent } from './create-status-modal.component'; //
 })
 export class Tab2Page implements OnInit {
   statuses: any[] = [];
-  apiUrl = 'http://localhost:8000/api/status/all';
+  apiUrl = 'https://backend-wassapp-4.onrender.com/api/status/all';
   createStatusForm: FormGroup;
 
   constructor(

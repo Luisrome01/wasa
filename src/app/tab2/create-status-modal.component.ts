@@ -69,7 +69,7 @@ export class CreateStatusModalComponent {
       'Authorization': `Bearer ${authToken}`
     });
 
-    this.http.post('http://localhost:8000/api/status/create', formData, { headers }).subscribe(
+    this.http.post('https://backend-wassapp-4.onrender.com/api/status/create', formData, { headers }).subscribe(
       async (response: any) => {
         console.log('Status created:', response);
         await this.showAlert('Success', 'Status created successfully!');
